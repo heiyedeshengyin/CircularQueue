@@ -10,9 +10,10 @@
 在循环队列中，我们使用一个数组和两个指针（head和tail）。  
 head表示队列的起始位置，tail表示队列的结束位置。  
 ```cpp
+template <typename T>
 class CircularQueue
 {
-  vector<int> data;	//储存队列的数组
+  vector<T> data;	//储存队列的数组
   int head;	//指向队列起始位置的指针
   int tail;	//指向队列结束位置的指针
   int size;	//数组的大小
