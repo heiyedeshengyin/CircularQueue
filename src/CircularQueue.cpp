@@ -2,10 +2,11 @@
 #include <vector>
 using namespace std;
 
+template <typename T>
 class CircularQueue
 {
 private:
-	vector<int> data;	//储存队列的数组
+	vector<T> data;	//储存队列的数组
 	int head;	//指向队列起始位置的指针
 	int tail;	//指向队列结束位置的指针
 	int size;	//数组的大小
@@ -14,7 +15,7 @@ public:
 	CircularQueue(int k);	//构造函数
 	bool isEmpty();	//判断队列是否为空
 	bool isFull();	//判断队列是否已满
-	bool enQueue(int value);	//入队,若成功则返回true,反之为false
+	bool enQueue(T value);	//入队,若成功则返回true,反之为false
 	bool deQueue();	//出队,若成功则返回false,反之为false
 	int Front();	//返回队列起始位置的值
 	int Back();	//返回队列结束位置的值
@@ -22,7 +23,8 @@ public:
 	void show();	//显示队列的所有值
 };
 
-CircularQueue::CircularQueue()	//默认构造函数
+template <typename T>
+CircularQueue<T>::CircularQueue()	//默认构造函数
 {
 	data.resize(0);
 	head = -1;
@@ -30,7 +32,8 @@ CircularQueue::CircularQueue()	//默认构造函数
 	size = 0;
 }
 
-CircularQueue::CircularQueue(int k)	//构造函数
+template <typename T>
+CircularQueue<T>::CircularQueue(int k)	//构造函数
 {
 	data.resize(k);
 	head = -1;
@@ -38,17 +41,20 @@ CircularQueue::CircularQueue(int k)	//构造函数
 	size = k;
 }
 
-bool CircularQueue::isEmpty()	//判断队列是否为空
+template <typename T>
+bool CircularQueue<T>::isEmpty()	//判断队列是否为空
 {
 	return head == -1;
 }
 
-bool CircularQueue::isFull()	//判断队列是否已满
+template <typename T>
+bool CircularQueue<T>::isFull()	//判断队列是否已满
 {
 	return((tail + 1) % size) == head;
 }
 
-bool CircularQueue::enQueue(int value)	//入队,若成功则返回true,反之为false
+template <typename T>
+bool CircularQueue<T>::enQueue(T value)	//入队,若成功则返回true,反之为false
 {
 	if (isFull())
 	{
@@ -63,7 +69,8 @@ bool CircularQueue::enQueue(int value)	//入队,若成功则返回true,反之为
 	return true;
 }
 
-bool CircularQueue::deQueue()	//出队,若成功则返回false,反之为false
+template <typename T>
+bool CircularQueue<T>::deQueue()	//出队,若成功则返回false,反之为false
 {
 	if (isEmpty())
 	{
@@ -81,7 +88,8 @@ bool CircularQueue::deQueue()	//出队,若成功则返回false,反之为false
 	return true;
 }
 
-int CircularQueue::Front()	//返回队列起始位置的值
+template <typename T>
+int CircularQueue<T>::Front()	//返回队列起始位置的值
 {
 	if (isEmpty())
 		return -1;
@@ -89,7 +97,8 @@ int CircularQueue::Front()	//返回队列起始位置的值
 	return data[head];
 }
 
-int CircularQueue::Back()	//返回队列结束位置的值
+template <typename T>
+int CircularQueue<T>::Back()	//返回队列结束位置的值
 {
 	if (isEmpty())
 		return -1;
@@ -97,7 +106,8 @@ int CircularQueue::Back()	//返回队列结束位置的值
 	return data[tail];
 }
 
-int CircularQueue::Size()	//返回队列的大小
+template <typename T>
+int CircularQueue<T>::Size()	//返回队列的大小
 {
 	if (isEmpty())
 		return 0;
@@ -112,7 +122,8 @@ int CircularQueue::Size()	//返回队列的大小
 	}
 }
 
-void CircularQueue::show()	//显示队列的所有值
+template <typename T>
+void CircularQueue<T>::show()	//显示队列的所有值
 {
 	if (isEmpty())
 		cout << "队列为空" << endl;
